@@ -3,7 +3,7 @@
 " Name:       omni.vim
 " Maintainer: https://github.com/yonlu/omni.vim
 " License:    The MIT License (MIT)
-" Based On: https://github.com/drewtempelmeyer/omni.vim
+" Based On: https://github.com/drewtempelmeyer/palenight.vim
 
 " Initialization {{{
 
