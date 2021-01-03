@@ -215,14 +215,14 @@ call s:h("cssTagName", { "fg": s:red })
 call s:h("goDeclaration", { "fg": s:purple })
 
 " HTML
-call s:h("htmlTitle", { "fg": s:white })
+call s:h("htmlTitle", { "fg": s:purple })
 call s:h("htmlArg", { "fg": s:yellow })
-call s:h("htmlEndTag", { "fg": s:cyan })
+call s:h("htmlEndTag", { "fg": s:white })
 call s:h("htmlH1", { "fg": s:white })
 call s:h("htmlLink", { "fg": s:purple })
 call s:h("htmlSpecialChar", { "fg": s:dark_yellow })
 call s:h("htmlSpecialTagName", { "fg": s:red })
-call s:h("htmlTag", { "fg": s:cyan })
+call s:h("htmlTag", { "fg": s:white })
 call s:h("htmlTagName", { "fg": s:red })
 
 " Coffeescript
