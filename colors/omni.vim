@@ -546,8 +546,8 @@ if has("nvim")
   let g:terminal_color_13 = s:purple.gui " No dark version
   let g:terminal_color_14 = s:cyan.gui " No dark version
   let g:terminal_color_15 = s:comment_grey.gui
-  let g:terminal_color_background = #191622
-  let g:terminal_color_foreground = #e1e1e6
+  let g:terminal_color_background = '#191622'
+  let g:terminal_color_foreground = '#e1e1e6'
 elseif has('terminal')
   let g:terminal_ansi_colors = [
     \ s:black.gui,
