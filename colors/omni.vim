@@ -7,22 +7,6 @@
 
 " Initialization {{{
 
-if (has("nvim"))
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-
-if (has("termguicolors"))
-  set termguicolors
-endif
-
-highlight clear
-
-if exists("syntax_on")
-  syntax reset
-endif
-
-set t_Co=256
-
 let g:colors_name="omni"
 
 if !exists("g:omni_termcolors")
