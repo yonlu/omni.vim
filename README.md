@@ -14,7 +14,7 @@
 
 ## Installation
 
-- ![dein](https://github.com/Shougo/dein.vim)
+- [dein](https://github.com/Shougo/dein.vim)
   ```viml
   call dein#add('yonlu/omni.vim')
   ```
