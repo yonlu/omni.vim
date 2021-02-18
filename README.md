@@ -7,7 +7,7 @@
 </h1>
 
 <p align="center">
-  <strong>A dark theme inspired by Dracula 🧛</strong>
+  <strong>A dark theme inspired by Dracula.</strong>
 </p>
 
 ![Preview of omni.vim](https://i.ibb.co/4Tzk7hH/omni-vim.png)
