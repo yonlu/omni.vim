@@ -42,14 +42,14 @@ local comment        = '#5a4b81'
 -- Editor Highlight Groups {{{
 
 local editor_syntax = {
-  CursorLine   = { bg = bg },
+  CursorLine   = { bg = bg_lighter },
   Cursor       = { fg = bg_dark, bg = yellow },
   Directory    = { fg = blue, gui = 'bold' },
   DiffAdd      = { fg = green },
   DiffChange   = { fg = yellow },
   DiffDelete   = { fg = red },
   DiffText     = { fg = blue },
-  EndOfBuffer  = { bg = bg_dark, fg = bg_dark },
+  EndOfBuffer  = { bg = bg_lighter, fg = fg_light },
   ErrorMsg     = { fg = red, gui = 'bold' },
   VertSplit    = { bg = bg_dark, fg = bg },
   Folded       = { fg = fg_dark, gui = 'italic' },
@@ -123,7 +123,7 @@ local editor_syntax = {
 -- Vim Default Code Syntax {{{
 
 local code_syntax = {
-  Comment        = { fg = fg_dark, gui = 'italic' },
+  Comment        = { fg = comment, gui = 'italic' },
   Constant       = { fg = cyan },
   String         = { fg = green },
   Character      = { fg = green, gui = 'bold' },
