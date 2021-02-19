@@ -347,7 +347,7 @@ local lang_syntax = {
 
 -- Setting Neovim Terminal Color {{{
 
-function M.setup()
+function omni.setup()
   for group, styles in pairs(editor_syntax) do
     highlight(group, styles)
   end
