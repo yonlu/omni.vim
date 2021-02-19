@@ -10,30 +10,30 @@ local function highlight(group, styles)
   vim.api.nvim_command('highlight! '..group..' '..gui..' '..sp..' '..fg..' '..bg)
 end
 
-local bg_darker      = '#121622'
-local bg_dark        = '#1b1e2b'
-local bg             = '#292d3e'
-local bg_light       = '#32374d'
-local bg_lighter     = '#444267'
+local bg_darker      = '#15121e'
+local bg_dark        = '#13111b'
+local bg             = '#191622'
+local bg_light       = '#252131'
+local bg_lighter     = '#201b2d'
 local grey           = '#8796b0'
 local grey_dark      = '#353b52'
-local red            = '#d06178'
+local red            = '#ff79c6'
 local heavy_red      = '#e61f44'
-local green          = '#b4c4b4'
-local green_high     = '#bcd9c4'
-local blue           = '#959dcb'
-local blue_light     = '#b8bcf3'
-local yellow         = '#cfcfbf'
+local green          = '#67e480'
+local green_high     = '#67e480'
+local blue           = '#78d1e1'
+local blue_light     = '#78d1e1'
+local yellow         = '#e7de79'
 local orange         = '#b4b4b4'
-local purple         = '#b9a3eb'
-local cyan_dark      = '#89bbdd'
-local cyan           = '#89ddff'
-local fg             = '#a6accd'
-local fg_light       = '#fbfbfb'
-local fg_dark        = '#676e96'
+local purple         = '#988bc7'
+local cyan_dark      = '#a1efe4'
+local cyan           = '#a1efe4'
+local fg             = '#e1e1e6'
+local fg_light       = '#e1e1e6'
+local fg_dark        = '#e1e1e6'
 local hollow         = '#424760'
 local hollow_lighter = '#30354e'
-local white          = '#ffffff'
+local white          = '#e1e1e6'
 
 -- }}}
 
@@ -77,7 +77,7 @@ local editor_syntax = {
   Visual       = { bg = hollow_lighter },
   VisualNOS    = { bg = hollow_lighter },
   WarningMsg   = { fg = yellow, gui = 'italic' },
-  Whitespace   = { bg = yellow }, -- TODO: i don't know where this is
+  Whitespace   = { bg = yellow },
 
   -- git highlighting
   gitcommitComment        = { fg = fg_dark, gui = 'italic' },
@@ -268,20 +268,6 @@ local lang_syntax = {
   zshSubst           = { fg = yellow },
   zshSubstDelim      = { fg = cyan },
 
-  -- rust polyglot (rust.vim)
-  rustKeyword     = { fg = orange },
-  rustFuncCall    = { fg = blue_light },
-  rustModPathSep  = { fg = cyan },
-  rustIdentifier  = { fg = fg_light },
-  rustFuncName    = { fg = blue },
-  rustSigil       = { fg = cyan },
-  rustMacro       = { fg = blue_light },
-  rustStorage     = { fg = orange },
-  rustModPath     = { fg = fg_light },
-  rustEnumVariant = { fg = fg_light },
-  rustStructure   = { fg = orange },
-  rustTypedef     = { fg = orange },
-
   -- javascript polyglot (pangloss/vim-javascript)
   jsFunction            = { fg = cyan, gui = 'italic' },
   jsFuncName            = { fg = blue },
@@ -334,13 +320,6 @@ local lang_syntax = {
 
   htmlTag = { fg = cyan },
   htmlEndTag = { fg = cyan },
-
-  -- Go
-  goDeclaration = { fg = blue, gui = 'italic' },
-  goDeclType    = { fg = blue },
-  goVar         = { fg = blue, gui = 'italic' },
-  goBuiltins    = { fg = cyan_dark },
-
 }
 
 -- }}}
