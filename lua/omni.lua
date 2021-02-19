@@ -1,4 +1,4 @@
-local M = {}
+local omni = {}
 
 -- Highlight Function And Color definitons {{{
 
@@ -382,4 +382,4 @@ end
 
 -- }}}
 
-return M
+return omni
