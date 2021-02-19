@@ -1,4 +1,4 @@
-local omni = {}
+local M = {}
 
 -- Highlight Function And Color definitons {{{
 
@@ -347,7 +347,7 @@ local lang_syntax = {
 
 -- Setting Neovim Terminal Color {{{
 
-function omni.setup()
+function M.setup()
   for group, styles in pairs(editor_syntax) do
     highlight(group, styles)
   end
@@ -382,4 +382,4 @@ end
 
 -- }}}
 
-return omni
+return M
