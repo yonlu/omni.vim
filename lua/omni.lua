@@ -1,279 +1,385 @@
-local omni = {
-  base0      = '#1B2229';
-  base1      = '#1c1f24';
-  base2      = '#202328';
-  base3      = '#23272e';
-  base4      = '#3f444a';
-  base5      = '#5B6268';
-  base6      = '#73797e';
-  base7      = '#9ca0a4';
-  base8      = '#b1b1b1';
+local M = {}
 
-  bg = '#191622'
-  bg1 = '#504945';
-  bg_popup = '#3E4556';
-  bg_highlight  = '#2E323C';
-  bg_visual = '#b3deef';
+-- Highlight Function And Color definitons {{{
 
-  fg = '#e1e1e6';
-  fg_alt  = '#5B6268';
+local function highlight(group, styles)
+  local gui = styles.gui and 'gui='..styles.gui or 'gui=NONE'
+  local sp = styles.sp and 'guisp='..styles.sp or 'guisp=NONE'
+  local fg = styles.fg and 'guifg='..styles.fg or 'guifg=NONE'
+  local bg = styles.bg and 'guibg='..styles.bg or 'guibg=NONE'
+  vim.api.nvim_command('highlight! '..group..' '..gui..' '..sp..' '..fg..' '..bg)
+end
 
-  black = '#201b2d';
-  red = '#ed4556';
-  green = '#67e480';
-  yellow = '#e7de79';
-  blue = '#78d1e1';
-  magenta = '#988bc7';
-  grey = '#e1e1e6';
+local bg_darker      = '#121622'
+local bg_dark        = '#1b1e2b'
+local bg             = '#292d3e'
+local bg_light       = '#32374d'
+local bg_lighter     = '#444267'
+local grey           = '#8796b0'
+local grey_dark      = '#353b52'
+local red            = '#d06178'
+local heavy_red      = '#e61f44'
+local green          = '#b4c4b4'
+local green_high     = '#bcd9c4'
+local blue           = '#959dcb'
+local blue_light     = '#b8bcf3'
+local yellow         = '#cfcfbf'
+local orange         = '#b4b4b4'
+local purple         = '#b9a3eb'
+local cyan_dark      = '#89bbdd'
+local cyan           = '#89ddff'
+local fg             = '#a6accd'
+local fg_light       = '#fbfbfb'
+local fg_dark        = '#676e96'
+local hollow         = '#424760'
+local hollow_lighter = '#30354e'
+local white          = '#ffffff'
 
-  brown = '#666660';
-  orange = '#da8548';
-  cyan = '#78d1e1';
-  violet = '#988bc7';
-  teal = '#1abc9c';
+-- }}}
 
-  bracket = '#80A0C2';
-  currsor_bg = '#00f769';
-  none = 'NONE';
+-- Editor Highlight Groups {{{
+
+local editor_syntax = {
+  CursorLine   = { bg = bg },
+  Cursor       = { fg = bg_dark, bg = yellow },
+  Directory    = { fg = blue, gui = 'bold' },
+  DiffAdd      = { fg = green },
+  DiffChange   = { fg = yellow },
+  DiffDelete   = { fg = red },
+  DiffText     = { fg = blue },
+  EndOfBuffer  = { bg = bg_dark, fg = bg_dark },
+  ErrorMsg     = { fg = red, gui = 'bold' },
+  VertSplit    = { bg = bg_dark, fg = bg },
+  Folded       = { fg = fg_dark, gui = 'italic' },
+  FoldColumn   = { fg = yellow },
+  SignColumn   = { fg = yellow },
+  IncSearch    = { bg = yellow, fg = bg },
+  Substitute   = { bg = blue, fg = bg },
+  LineNr       = { fg = fg_dark },
+  CursorLineNr = { fg = fg },
+  MatchParen   = { fg = cyan, gui = 'bold' },
+  Normal       = { fg = fg_light, bg = bg_dark },
+  NormalFloat  = { bg = grey_dark, fg = white },
+  Pmenu        = { bg = bg_darker, fg = fg_light },
+  PmenuSel     = { bg = cyan, fg = bg_lighter, gui = 'bold' },
+  PmenuSbar    = { bg = bg_lighter },
+  PmenuThumb   = { bg = fg },
+  Search       = { bg = hollow },
+  SpecialKey   = { bg = bg_light },
+  SpellBad     = { gui = 'underline', sp = red },
+  SpellCap     = { gui = 'underline', sp = yellow },
+  SpellLocal   = { gui = 'underline', sp = orange },
+  SpellRare    = { gui = 'underline', sp = blue },
+  TabLine      = { bg = bg_dark, fg = fg_light },
+  TabLineFill  = { bg = bg_dark, fg = fg_light },
+  TabLineSel   = { bg = cyan, fg = bg_dark, gui = 'bold'},
+  Title        = { fg = green },
+  Visual       = { bg = hollow_lighter },
+  VisualNOS    = { bg = hollow_lighter },
+  WarningMsg   = { fg = yellow, gui = 'italic' },
+  Whitespace   = { bg = yellow }, -- TODO: i don't know where this is
+
+  -- git highlighting
+  gitcommitComment        = { fg = fg_dark, gui = 'italic' },
+  gitcommitUntracked      = { fg = fg_dark, gui = 'italic' },
+  gitcommitDiscarded      = { fg = fg_dark, gui = 'italic' },
+  gitcommitSelected       = { fg = fg_dark, gui = 'italic' },
+  gitcommitUnmerged       = { fg = green },
+  gitcommitBranch         = { fg = purple },
+  gitcommitNoBranch       = { fg = purple },
+  gitcommitDiscardedType  = { fg = red },
+  gitcommitSelectedType   = { fg = green },
+  gitcommitUntrackedFile  = { fg = cyan },
+  gitcommitDiscardedFile  = { fg = red },
+  gitcommitDiscardedArrow = { fg = red },
+  gitcommitSelectedFile   = { fg = green },
+  gitcommitSelectedArrow  = { fg = green },
+  gitcommitUnmergedFile   = { fg = yellow },
+  gitcommitUnmergedArrow  = { fg = yellow },
+  gitcommitSummary        = { fg = fg_light },
+  gitcommitOverflow       = { fg = red },
+  gitcommitOnBranch      = {},
+  gitcommitHeader        = {},
+  gitcommitFile          = {},
+
+  -- User dependent groups, probably useless to change the default:
+  Conceal      = {},
+  ModeMsg      = {},
+  MsgArea      = {},
+  MsgSeparator = {},
+  MoreMsg      = {},
+  NonText      = {},
+  Question     = {},
+  QuickFixLine = {},
+  StatusLine   = {},
+  StatusLineNC = {},
+  WildMenu     = {}
 }
 
-function omni.terminal_color()
-  vim.g.terminal_color_0 = omni.bg
-  vim.g.terminal_color_1 = omni.red
-  vim.g.terminal_color_2 = omni.green
-  vim.g.terminal_color_3 = omni.yellow
-  vim.g.terminal_color_4 = omni.blue
-  vim.g.terminal_color_5 = omni.violet
-  vim.g.terminal_color_6 = omni.cyan
-  vim.g.terminal_color_7 = omni.bg1
-  vim.g.terminal_color_8 = omni.brown
-  vim.g.terminal_color_9 = omni.red
-  vim.g.terminal_color_10 = omni.green
-  vim.g.terminal_color_11 = omni.yellow
-  vim.g.terminal_color_12 = omni.blue
-  vim.g.terminal_color_13 = omni.violet
-  vim.g.terminal_color_14 = omni.cyan
-  vim.g.terminal_color_15 = omni.fg
-end
+-- }}}
 
-function omni.highlight(group, color)
-    local style = color.style and 'gui=' .. color.style or 'gui=NONE'
-    local fg = color.fg and 'guifg=' .. color.fg or 'guifg=NONE'
-    local bg = color.bg and 'guibg=' .. color.bg or 'guibg=NONE'
-    local sp = color.sp and 'guisp=' .. color.sp or ''
-    vim.api.nvim_command('highlight ' .. group .. ' ' .. style .. ' ' .. fg ..
-                             ' ' .. bg..' '..sp)
-end
+-- Vim Default Code Syntax {{{
 
+local code_syntax = {
+  Comment        = { fg = fg_dark, gui = 'italic' },
+  Constant       = { fg = cyan },
+  String         = { fg = green },
+  Character      = { fg = green, gui = 'bold' },
+  Number         = { fg = orange },
+  Float          = { fg = orange },
+  Boolean        = { fg = orange },
 
-function omni.load_syntax()
-  local syntax = {
-    Normal = {fg = omni.fg,bg=omni.bg};
-    Terminal = {fg = omni.fg,bg=omni.bg};
-    SignColumn = {fg=omni.fg,bg=omni.bg};
-    FoldColumn = {fg=omni.fg_alt,bg=omni.black};
-    VertSplit = {fg=omni.black,bg=omni.bg};
-    Folded = {fg=omni.grey,bg=omni.bg_highlight};
-    EndOfBuffer = {fg=omni.bg,bg=omni.none};
-    IncSearch = {fg=omni.bg1,bg=omni.orange,style=omni.none};
-    Search = {fg=omni.bg,bg=omni.green};
-    ColorColumn = {fg=omni.none,bg=omni.bg_highlight};
-    Conceal = {fg=omni.grey,bg=omni.none};
-    Cursor = {fg=omni.none,bg=omni.none,style='reverse'};
-    vCursor = {fg=omni.none,bg=omni.none,style='reverse'};
-    iCursor = {fg=omni.none,bg=omni.none,style='reverse'};
-    lCursor = {fg=omni.none,bg=omni.none,style='reverse'};
-    CursorIM = {fg=omni.none,bg=omni.none,style='reverse'};
-    CursorColumn = {fg=omni.none,bg=omni.bg_highlight};
-    CursorLine = {fg=omni.none,bg=omni.bg_highlight};
-    LineNr = {fg=omni.base4};
-    CursorLineNr = {fg=omni.blue};
-    DiffAdd = {fg=omni.black,bg=omni.green};
-    DiffChange = {fg=omni.black,bg=omni.yellow};
-    DiffDelete = {fg=omni.black,bg=omni.red};
-    DiffText = {fg=omni.black,bg=omni.fg};
-    Directory = {fg=omni.bg1,bg=omni.none};
-    ErrorMsg = {fg=omni.red,bg=omni.none,style='bold'};
-    WarningMsg = {fg=omni.yellow,bg=omni.none,style='bold'};
-    ModeMsg = {fg=omni.fg,bg=omni.none,style='bold'};
-    MatchParen = {fg=omni.red,bg=omni.none};
-    NonText = {fg=omni.bg1};
-    Whitespace = {fg=omni.base4};
-    SpecialKey = {fg=omni.bg1};
-    Pmenu = {fg=omni.fg,bg=omni.bg_popup};
-    PmenuSel = {fg=omni.base0,bg=omni.blue};
-    PmenuSelBold = {fg=omni.base0,g=omni.blue};
-    PmenuSbar = {fg=omni.none,bg=omni.blue};
-    PmenuThumb = {fg=omni.brown,bg=omni.brown};
-    WildMenu = {fg=omni.fg,bg=omni.green};
-    Question = {fg=omni.yellow};
-    NormalFloat = {fg=omni.base8,bg=omni.bg_highlight};
-    TabLineFill = {style=omni.none};
-    TabLineSel = {bg=omni.blue};
-    StatusLine = {fg=omni.base8,bg=omni.base2,style=omni.none};
-    StatusLineNC = {fg=omni.grey,bg=omni.base2,style=omni.none};
-    SpellBad = {fg=omni.red,bg=omni.none,style='undercurl'};
-    SpellCap = {fg=omni.blue,bg=omni.none,style='undercurl'};
-    SpellLocal = {fg=omni.cyan,bg=omni.none,style='undercurl'};
-    SpellRare = {fg=omni.violet,bg=omni.none,style = 'undercurl'};
-    Visual = {fg=omni.black,bg=omni.bg_visual};
-    VisualNOS = {fg=omni.black,bg=omni.bg_visual};
-    QuickFixLine = {fg=omni.violet,style='bold'};
-    Debug = {fg=omni.orange};
-    debugBreakpoint = {fg=omni.bg,bg=omni.red};
+  Identifier     = { fg = heavy_red },
+  Function       = { fg = blue, gui = 'italic' },
 
-    Boolean = {fg=omni.orange};
-    Number = {fg=omni.violet};
-    Float = {fg=omni.violet};
-    PreProc = {fg=omni.violet};
-    PreCondit = {fg=omni.violet};
-    Include = {fg=omni.violet};
-    Define = {fg=omni.violet};
-    Conditional = {fg=omni.violet};
-    Repeat = {fg=omni.violet};
-    Keyword = {fg=omni.red};
-    Typedef = {fg=omni.red};
-    Exception = {fg=omni.red};
-    Statement = {fg=omni.red};
-    Error = {fg=omni.red};
-    StorageClass = {fg=omni.orange};
-    Tag = {fg=omni.orange};
-    Label = {fg=omni.orange};
-    Structure = {fg=omni.orange};
-    Operator = {fg=omni.magenta};
-    Title = {fg=omni.orange,style='bold'};
-    Special = {fg=omni.yellow};
-    SpecialChar = {fg=omni.yellow};
-    Type = {fg=omni.yellow};
-    Function = {fg=omni.magenta,style='bold'};
-    String = {fg=omni.green};
-    Character = {fg=omni.green};
-    Constant = {fg=omni.cyan};
-    Macro = {fg=omni.cyan};
-    Identifier = {fg=omni.blue};
+  Statement      = { fg = blue_light, gui = 'italic' },
+  Conditional    = { fg = blue, gui = 'italic' },
+  Repeat         = { fg = blue, gui = 'italic' },
+  Label          = { fg = blue, gui = 'italic' },
+  Exception      = { fg = blue, gui = 'italic' },
+  Operator       = { fg = blue },
+  Keyword        = { fg = heavy_red },
 
-    Comment = {fg=omni.base6};
-    SpecialComment = {fg=omni.grey};
-    Todo = {fg=omni.violet};
-    Delimiter = {fg=omni.fg};
-    Ignore = {fg=omni.grey};
-    Underlined = {fg=omni.none,style='underline'};
+  Include        = { fg = blue_light },
+  Define         = { fg = purple },
+  Macro          = { fg = purple },
+  PreProc        = { fg = yellow },
+  PreCondit      = { fg = yellow },
 
-    TSFunction = {fg=omni.yellow,style='bold'};
-    TSMethod = {fg=omni.yellow,style='bold'};
-    TSKeywordFunction = {fg=omni.blue};
-    TSProperty = {fg=omni.cyan};
-    TSType = {fg=omni.teal};
-    TSPunctBracket = {fg=omni.bracket};
+  Type           = { fg = yellow },
+  StorageClass   = { fg = yellow },
+  Structure      = { fg = yellow },
+  Typedef        = { fg = yellow },
 
-    vimCommentTitle = {fg=omni.grey,style='bold'};
-    vimLet = {fg=omni.orange};
-    vimVar = {fg=omni.cyan};
-    vimFunction = {fg=omni.magenta,style='bold'};
-    vimIsCommand = {fg=omni.fg};
-    vimCommand = {fg=omni.blue};
-    vimNotFunc = {fg=omni.violet,style='bold'};
-    vimUserFunc = {fg=omni.yellow,style='bold'};
-    vimFuncName= {fg=omni.yellow,style='bold'};
+  Special        = { fg = blue },
+  SpecialChar    = {},
+  Tag            = { fg = orange },
+  SpecialComment = { fg = fg_dark, gui = 'bold' },
+  Debug          = {},
+  Delimiter      = {},
 
-    diffAdded = {fg = omni.green};
-    diffRemoved = {fg =omni.red};
-    diffChanged = {fg = omni.blue};
-    diffOldFile = {fg = omni.yellow};
-    diffNewFile = {fg = omni.orange};
-    diffFile    = {fg = omni.aqua};
-    diffLine    = {fg = omni.grey};
-    diffIndexLine = {fg = omni.violet};
+  Ignore         = {},
+  Underlined     = { gui = 'underline' },
+  Error          = { fg = heavy_red },
+  Todo           = { fg = purple, gui = 'bold' },
+}
 
-    gitcommitSummary = {fg = omni.red};
-    gitcommitUntracked = {fg = omni.grey};
-    gitcommitDiscarded = {fg = omni.grey};
-    gitcommitSelected = { fg=omni.grey};
-    gitcommitUnmerged = { fg=omni.grey};
-    gitcommitOnBranch = { fg=omni.grey};
-    gitcommitArrow  = {fg = omni.grey};
-    gitcommitFile  = {fg = omni.green};
+-- }}}
 
-    VistaBracket = {fg=omni.grey};
-    VistaChildrenNr = {fg=omni.orange};
-    VistaKind = {fg=omni.purpl};
-    VistaScope = {fg=omni.red};
-    VistaScopeKind = {fg=omni.blue};
-    VistaTag = {fg=omni.green,style='bold'};
-    VistaPrefix = {fg=omni.grey};
-    VistaColon = {fg=omni.green};
-    VistaIcon = {fg=omni.yellow};
-    VistaLineNr = {fg=omni.fg};
+-- Plugin Highlight Groups {{{
 
-    GitGutterAdd = {fg=omni.green};
-    GitGutterChange = {fg=omni.blue};
-    GitGutterDelete = {fg=omni.red};
-    GitGutterChangeDelete = {fg=omni.violet};
+local plugin_syntax = {
+  GitGutterAdd           = { fg = green },
+  GitGutterChange        = { fg = yellow },
+  GitGutterDelete        = { fg = red },
+  GitGutterChangeDelete  = { fg = orange },
 
-    SignifySignAdd = {fg=omni.green};
-    SignifySignChange = {fg=omni.blue};
-    SignifySignDelete = {fg=omni.red};
+  diffAdded              = { fg = green },
+  diffRemoved            = { fg = heavy_red },
 
-    dbui_tables = {fg=omni.blue};
+  TSError                = {},
+  TSPunctDelimiter       = { fg = white },
+  TSPunctBracket         = { fg = cyan_dark },
+  TSPunctSpecial         = { fg = cyan },
+  TSConstant             = { fg = yellow },
+  TSConstBuiltin         = { fg = orange },
+  TSConstMacro           = { fg = yellow },
+  TSString               = { fg = green },
+  TSStringRegex          = { fg = cyan_dark },
+  TSStringEscape         = { fg = cyan_dark },
+  TSNumber               = { fg = orange },
+  TSBoolean              = { fg = orange },
+  TSFloat                = { fg = orange },
+  TSFunction             = { fg = blue_light },
+  TSKeywordFunction      = { fg = blue_light },
+  TSFuncBuiltin          = { fg = purple },
+  TSFuncMacro            = { fg = orange },
+  TSParameter            = { fg = white },
+  TSParameterReference   = { fg = green_high },
+  TSMethod               = { fg = blue_light },
+  TSField                = { fg = blue_light },
+  TSProperty             = { fg = blue_light },
+  TSConstructor          = { fg = yellow },
+  TSConditional          = { fg = blue, gui = 'italic' },
+  TSRepeat               = { fg = blue, gui = 'italic' },
+  TSException            = { fg = blue, gui = 'italic' },
+  TSLabel                = { fg = cyan_dark, gui = 'italic' },
+  TSOperator             = { fg = cyan },
+  TSKeyword              = { fg = blue },
+  TSType                 = { fg = yellow },
+  TSTypeBuiltin          = { fg = orange },
+  TSStructure            = { fg = orange },
+  TSInclude              = { fg = cyan_dark },
+  TSTag                  = { fg = blue_light },
+  TSTagDelimiter         = { fg = cyan },
+  -- TSAnnotation = {},
+  TSVariable = { fg = fg_light },
+  TSVariableBuiltin = { fg = orange },
+  -- TSDefinitionUsage = {},
+  -- TSDefinition = {},
+  -- TSCurrentScope                 = {},
+  -- TSText                 = {},
+  -- TSStrong               = {},
+  -- TSEmphasis             = {},
+  -- TSUnderline            = {},
+  -- TSTitle                = {},
+  -- TSLiteral              = {},
+  -- TSURI                  = {},
+}
 
-    DefxIconsParentDirectory = {fg=omni.orange};
-    Defx_filename_directory = {fg=omni.blue};
-    Defx_filename_root = {fg=omni.red};
+-- }}}
 
-    DashboardShortCut = {fg=omni.violet};
-    DashboardHeader = {fg=omni.orange};
-    DashboardCenter = {fg=omni.blue};
-    DashboardFooter = {fg=omni.grey};
+-- Syntax Plugin And Language Highlight Groups {{{
 
-    LspDiagnosticsSignError = {fg=omni.red};
-    LspDiagnosticsSignWarning = {fg=omni.yellow};
-    LspDiagnosticsSignInformation = {fg=omni.blue};
-    LspDiagnosticsSignHint = {fg=omni.cyan};
+local lang_syntax = {
+  -- lua.vim
+  luaTable          = { fg = fg_light },
+  luaBraces         = { fg = cyan },
+  luaIn             = { fg = blue, gui = 'italic' },
+  -- lua polyglot (tbastos/vim-lua)
+  luaFunc           = { fg = blue_light },
+  luaFuncCall       = { fg = blue_light },
+  luaFuncName       = { fg = blue_light },
+  luaBuiltIn        = { fg = blue_light },
+  luaFuncTable      = { fg = blue, gui = 'italic' },
+  luaFuncId         = { fg = blue, gui = 'italic' },
+  luaLocal          = { fg = purple },
+  luaSpecialValue   = { fg = purple },
+  luaStatement      = { fg = purple },
+  luaFunction       = { fg = blue, gui = 'italic' },
+  luaCond           = { fg = blue, gui = 'italic' },
+  luaElse           = { fg = blue, gui = 'italic' },
+  luaOperator       = { fg = blue, gui = 'italic' },
+  luaSymbolOperator = { fg = cyan },
+  luaConstant       = { fg = orange },
 
-    LspDiagnosticsVirtualTextError = {fg=omni.red};
-    LspDiagnosticsVirtualTextWarning= {fg=omni.yellow};
-    LspDiagnosticsVirtualTextInformation = {fg=omni.blue};
-    LspDiagnosticsVirtualTextHint = {fg=omni.cyan};
+  -- zsh.vim
+  zshTodo            = code_syntax.Todo,
+  zshComment         = code_syntax.Comment,
+  zshPreProc         = code_syntax.PreProc,
+  zshString          = code_syntax.String,
+  zshStringDelimiter = { fg = cyan },
+  zshPrecommand      = { fg = blue },
+  zshKeyword         = code_syntax.Function,
+  zshCommands        = { fg = blue },
+  zshOptStart        = { fg = blue, gui = 'italic' },
+  zshOption          = { fg = cyan, gui = 'italic' },
+  zshNumber          = code_syntax.Number,
+  zshSubst           = { fg = yellow },
+  zshSubstDelim      = { fg = cyan },
 
-    LspDiagnosticsUnderlineError = {style="undercurl",sp=omni.red};
-    LspDiagnosticsUnderlineWarning = {style="undercurl",sp=omni.yellow};
-    LspDiagnosticsUnderlineInformation = {style="undercurl",sp=omni.blue};
-    LspDiagnosticsUnderlineHint = {style="undercurl",sp=omni.cyan};
+  -- rust polyglot (rust.vim)
+  rustKeyword     = { fg = orange },
+  rustFuncCall    = { fg = blue_light },
+  rustModPathSep  = { fg = cyan },
+  rustIdentifier  = { fg = fg_light },
+  rustFuncName    = { fg = blue },
+  rustSigil       = { fg = cyan },
+  rustMacro       = { fg = blue_light },
+  rustStorage     = { fg = orange },
+  rustModPath     = { fg = fg_light },
+  rustEnumVariant = { fg = fg_light },
+  rustStructure   = { fg = orange },
+  rustTypedef     = { fg = orange },
 
-    CursorWord0 = {bg=omni.currsor_bg};
-    CursorWord1 = {bg=omni.currsor_bg};
+  -- javascript polyglot (pangloss/vim-javascript)
+  jsFunction            = { fg = cyan, gui = 'italic' },
+  jsFuncName            = { fg = blue },
+  jsImport              = { fg = cyan, gui = 'italic' },
+  jsFrom                = { fg = cyan, gui = 'italic' },
+  jsStorageClass        = { fg = purple },
+  jsAsyncKeyword        = { fg = cyan, gui = 'italic' },
+  jsForAwait            = { fg = cyan, gui = 'italic' },
+  jsArrowFunction       = { fg = purple },
+  jsReturn              = { fg = purple },
+  jsFuncCall            = { fg = blue },
+  jsFuncBraces          = { fg = cyan },
+  jsExport              = { fg = cyan, gui = 'italic' },
+  jsGlobalObjects       = { fg = yellow },
+  jsxTagName            = { fg = red },
+  jsxComponentName      = { fg = yellow },
+  jsxAttrib             = { fg = purple },
+  jsxBraces             = { fg = cyan },
+  jsTemplateBraces      = { fg = cyan },
+  jsFuncParens          = { fg = cyan },
+  jsDestructuringBraces = { fg = cyan },
+  jsObjectBraces        = { fg = cyan },
+  jsObjectKey           = { fg = red },
+  jsObjectShorthandProp = { fg = fg_light },
+  jsNull                = { fg = orange },
 
-    NvimTreeFolderName = {fg=omni.blue};
-    NvimTreeRootFolder = {fg=omni.red};
-    NvimTreeSpecialFile = {fg=omni.fg,bg=omni.none,stryle='NONE'};
+  typescriptAsyncFuncKeyword  = { fg = cyan, gui = 'italic' },
+  typescriptCall              = { fg = fg_light },
+  typescriptBraces            = { fg = cyan },
+  typescriptTemplateSB        = { fg = cyan },
+  typescriptTry               = { fg = cyan, gui = 'italic' },
+  typescriptExceptions        = { fg = cyan, gui = 'italic' },
+  typescriptOperator          = { fg = cyan, gui = 'italic' },
+  typescriptExport            = { fg = cyan, gui = 'italic' },
+  typescriptStatementKeyword  = { fg = cyan, gui = 'italic' },
+  typescriptImport            = { fg = cyan, gui = 'italic' },
+  typescriptArrowFunc         = { fg = purple },
+  typescriptArrowFuncArg      = { fg = fg_light },
+  typescriptArrayMethod       = { fg = blue },
+  typescriptStringMethod      = { fg = blue },
+  typescriptTypeReference     = { fg = yellow },
+  typescriptObjectLabel       = { fg = red },
+  typescriptParens            = { fg = fg_light },
+  typescriptTypeBrackets      = { fg = cyan },
+  typescriptXHRMethod         = { fg = blue },
+  typescriptResponseProp      = { fg = blue },
+  typescriptBOMLocationMethod = { fg = blue },
+  typescriptHeadersMethod     = { fg = blue },
+  typescriptVariable          = { fg = purple },
 
-    TelescopeBorder = {fg=omni.teal};
-    TelescopePromptBorder = {fg=omni.blue}
-  }
-  return syntax
-end
+  htmlTag = { fg = cyan },
+  htmlEndTag = { fg = cyan },
 
-function omni.get_omni_color()
-  return omni
-end
+  -- Go
+  goDeclaration = { fg = blue, gui = 'italic' },
+  goDeclType    = { fg = blue },
+  goVar         = { fg = blue, gui = 'italic' },
+  goBuiltins    = { fg = cyan_dark },
 
-function omni.colorscheme()
-  vim.api.nvim_command('hi clear')
-  if vim.fn.exists('syntax_on') then
-    vim.api.nvim_command('syntax reset')
+}
+
+-- }}}
+
+-- Setting Neovim Terminal Color {{{
+
+function M.setup()
+  for group, styles in pairs(editor_syntax) do
+    highlight(group, styles)
   end
-  vim.o.background = 'dark'
-  vim.o.termguicolors = true
-  vim.g.colors_name = 'omni'
 
-  omni.terminal_color()
-  local syntax = omni.load_syntax()
-
-  for group,colors in pairs(syntax) do
-    omni.highlight(group,colors)
+  for group, styles in pairs(code_syntax) do
+    highlight(group, styles)
   end
+
+  for group, styles in pairs(plugin_syntax) do
+    highlight(group, styles)
+  end
+
+  vim.api.nvim_set_var('terminal_color_0',          bg_dark)
+  vim.api.nvim_set_var('terminal_color_1',          red)
+  vim.api.nvim_set_var('terminal_color_2',          green)
+  vim.api.nvim_set_var('terminal_color_3',          yellow)
+  vim.api.nvim_set_var('terminal_color_4',          blue)
+  vim.api.nvim_set_var('terminal_color_5',          purple)
+  vim.api.nvim_set_var('terminal_color_6',          cyan)
+  vim.api.nvim_set_var('terminal_color_7',          fg)
+  vim.api.nvim_set_var('terminal_color_8',          grey)
+  vim.api.nvim_set_var('terminal_color_9',          red)
+  vim.api.nvim_set_var('terminal_color_10',         green)
+  vim.api.nvim_set_var('terminal_color_11',         orange)
+  vim.api.nvim_set_var('terminal_color_12',         blue)
+  vim.api.nvim_set_var('terminal_color_13',         purple)
+  vim.api.nvim_set_var('terminal_color_14',         cyan)
+  vim.api.nvim_set_var('terminal_color_15',         white)
+  vim.api.nvim_set_var('terminal_color_background', bg_dark)
+  vim.api.nvim_set_var('terminal_color_foreground', fg_light)
 end
 
-omni.colorscheme()
+-- }}}
 
-return omni
+return M
