@@ -35,6 +35,7 @@ local fg_dark        = '#e1e1e6'
 local hollow         = '#424760'
 local hollow_lighter = '#30354e'
 local white          = '#e1e1e6'
+local comment        = '#5a4b81'
 
 -- }}}
 
@@ -56,10 +57,10 @@ local editor_syntax = {
   SignColumn   = { fg = yellow },
   IncSearch    = { bg = yellow, fg = bg },
   Substitute   = { bg = blue, fg = bg },
-  LineNr       = { fg = fg_dark },
+  LineNr       = { fg = comment },
   CursorLineNr = { fg = fg },
   MatchParen   = { fg = cyan, gui = 'bold' },
-  Normal       = { fg = fg_light, bg = bg_dark },
+  Normal       = { fg = fg_light, bg = bg_lighter },
   NormalFloat  = { bg = grey_dark, fg = white },
   Pmenu        = { bg = bg_darker, fg = fg_light },
   PmenuSel     = { bg = cyan, fg = bg_lighter, gui = 'bold' },
