@@ -26,6 +26,7 @@ local blue_light     = '#78d1e1'
 local yellow         = '#e7de79'
 local orange         = '#b4b4b4'
 local purple         = '#988bc7'
+local magenta        = '#988bc7'
 local cyan_dark      = '#a1efe4'
 local cyan           = '#a1efe4'
 local fg             = '#e1e1e6'
@@ -85,8 +86,8 @@ local editor_syntax = {
   gitcommitDiscarded      = { fg = fg_dark, gui = 'italic' },
   gitcommitSelected       = { fg = fg_dark, gui = 'italic' },
   gitcommitUnmerged       = { fg = green },
-  gitcommitBranch         = { fg = purple },
-  gitcommitNoBranch       = { fg = purple },
+  gitcommitBranch         = { fg = magenta },
+  gitcommitNoBranch       = { fg = magenta },
   gitcommitDiscardedType  = { fg = red },
   gitcommitSelectedType   = { fg = green },
   gitcommitUntrackedFile  = { fg = cyan },
@@ -141,8 +142,8 @@ local code_syntax = {
   Keyword        = { fg = heavy_red },
 
   Include        = { fg = blue_light },
-  Define         = { fg = purple },
-  Macro          = { fg = purple },
+  Define         = { fg = magenta },
+  Macro          = { fg = magenta },
   PreProc        = { fg = yellow },
   PreCondit      = { fg = yellow },
 
@@ -161,7 +162,7 @@ local code_syntax = {
   Ignore         = {},
   Underlined     = { gui = 'underline' },
   Error          = { fg = heavy_red },
-  Todo           = { fg = purple, gui = 'bold' },
+  Todo           = { fg = magenta, gui = 'bold' },
 }
 
 -- }}}
@@ -192,7 +193,7 @@ local plugin_syntax = {
   TSFloat                = { fg = orange },
   TSFunction             = { fg = blue_light },
   TSKeywordFunction      = { fg = blue_light },
-  TSFuncBuiltin          = { fg = purple },
+  TSFuncBuiltin          = { fg = magenta },
   TSFuncMacro            = { fg = orange },
   TSParameter            = { fg = white },
   TSParameterReference   = { fg = green_high },
@@ -243,9 +244,9 @@ local lang_syntax = {
   luaBuiltIn        = { fg = blue_light },
   luaFuncTable      = { fg = blue, gui = 'italic' },
   luaFuncId         = { fg = blue, gui = 'italic' },
-  luaLocal          = { fg = purple },
-  luaSpecialValue   = { fg = purple },
-  luaStatement      = { fg = purple },
+  luaLocal          = { fg = magenta },
+  luaSpecialValue   = { fg = magenta },
+  luaStatement      = { fg = magenta },
   luaFunction       = { fg = blue, gui = 'italic' },
   luaCond           = { fg = blue, gui = 'italic' },
   luaElse           = { fg = blue, gui = 'italic' },
@@ -273,18 +274,18 @@ local lang_syntax = {
   jsFuncName            = { fg = blue },
   jsImport              = { fg = cyan, gui = 'italic' },
   jsFrom                = { fg = cyan, gui = 'italic' },
-  jsStorageClass        = { fg = purple },
+  jsStorageClass        = { fg = magenta },
   jsAsyncKeyword        = { fg = cyan, gui = 'italic' },
   jsForAwait            = { fg = cyan, gui = 'italic' },
-  jsArrowFunction       = { fg = purple },
-  jsReturn              = { fg = purple },
+  jsArrowFunction       = { fg = magenta },
+  jsReturn              = { fg = magenta },
   jsFuncCall            = { fg = blue },
   jsFuncBraces          = { fg = cyan },
   jsExport              = { fg = cyan, gui = 'italic' },
   jsGlobalObjects       = { fg = yellow },
   jsxTagName            = { fg = red },
   jsxComponentName      = { fg = yellow },
-  jsxAttrib             = { fg = purple },
+  jsxAttrib             = { fg = magenta },
   jsxBraces             = { fg = cyan },
   jsTemplateBraces      = { fg = cyan },
   jsFuncParens          = { fg = cyan },
@@ -304,7 +305,7 @@ local lang_syntax = {
   typescriptExport            = { fg = cyan, gui = 'italic' },
   typescriptStatementKeyword  = { fg = cyan, gui = 'italic' },
   typescriptImport            = { fg = cyan, gui = 'italic' },
-  typescriptArrowFunc         = { fg = purple },
+  typescriptArrowFunc         = { fg = magenta },
   typescriptArrowFuncArg      = { fg = fg_light },
   typescriptArrayMethod       = { fg = blue },
   typescriptStringMethod      = { fg = blue },
@@ -316,7 +317,7 @@ local lang_syntax = {
   typescriptResponseProp      = { fg = blue },
   typescriptBOMLocationMethod = { fg = blue },
   typescriptHeadersMethod     = { fg = blue },
-  typescriptVariable          = { fg = purple },
+  typescriptVariable          = { fg = magenta },
 
   htmlTag = { fg = cyan },
   htmlEndTag = { fg = cyan },
@@ -339,12 +340,12 @@ function M.setup()
     highlight(group, styles)
   end
 
-  vim.api.nvim_set_var('terminal_color_0',          bg_dark)
+  vim.api.nvim_set_var('terminal_color_0',          bg_lighter)
   vim.api.nvim_set_var('terminal_color_1',          red)
   vim.api.nvim_set_var('terminal_color_2',          green)
   vim.api.nvim_set_var('terminal_color_3',          yellow)
   vim.api.nvim_set_var('terminal_color_4',          blue)
-  vim.api.nvim_set_var('terminal_color_5',          purple)
+  vim.api.nvim_set_var('terminal_color_5',          magenta)
   vim.api.nvim_set_var('terminal_color_6',          cyan)
   vim.api.nvim_set_var('terminal_color_7',          fg)
   vim.api.nvim_set_var('terminal_color_8',          grey)
@@ -352,7 +353,7 @@ function M.setup()
   vim.api.nvim_set_var('terminal_color_10',         green)
   vim.api.nvim_set_var('terminal_color_11',         orange)
   vim.api.nvim_set_var('terminal_color_12',         blue)
-  vim.api.nvim_set_var('terminal_color_13',         purple)
+  vim.api.nvim_set_var('terminal_color_13',         magenta)
   vim.api.nvim_set_var('terminal_color_14',         cyan)
   vim.api.nvim_set_var('terminal_color_15',         white)
   vim.api.nvim_set_var('terminal_color_background', bg_dark)
