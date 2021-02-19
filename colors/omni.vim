@@ -3,4 +3,4 @@
 " License: MIT
 " Source: http://github.com/yonlu/omni.vim
 
-lua require('omni')
+lua require 'omni'.setup()
