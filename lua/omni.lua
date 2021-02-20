@@ -43,7 +43,7 @@ local comment        = '#5a4b81'
 
 local editor_syntax = {
   CursorLine   = { bg = bg_lighter },
-  Cursor       = { fg = bg_dark, bg = yellow },
+  Cursor       = { fg = fg, bg = bg },
   Directory    = { fg = blue, gui = 'bold' },
   DiffAdd      = { fg = green },
   DiffChange   = { fg = yellow },
@@ -60,7 +60,7 @@ local editor_syntax = {
   LineNr       = { fg = comment },
   CursorLineNr = { fg = fg },
   MatchParen   = { fg = cyan, gui = 'bold' },
-  Normal       = { fg = fg_light, bg = bg_lighter },
+  Normal       = { fg = fg, bg = bg },
   NormalFloat  = { bg = grey_dark, fg = white },
   Pmenu        = { bg = bg_darker, fg = fg_light },
   PmenuSel     = { bg = cyan, fg = bg_lighter, gui = 'bold' },
