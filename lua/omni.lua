@@ -10,25 +10,25 @@ local function highlight(group, styles)
   vim.api.nvim_command('highlight! '..group..' '..gui..' '..sp..' '..fg..' '..bg)
 end
 
-local bg_darker      = '#15121e'
-local bg_dark        = '#13111b'
 local bg             = '#191622'
+local bg_dark        = '#13111b'
+local bg_darker      = '#15121e'
 local bg_light       = '#201b2d'
 local bg_lighter     = '#252131'
 local grey           = '#8796b0'
 local grey_dark      = '#353b52'
-local red            = '#ff79c6'
+local red            = '#ed4556'
 local heavy_red      = '#e61f44'
 local green          = '#67e480'
 local green_high     = '#67e480'
 local blue           = '#78d1e1'
 local blue_light     = '#78d1e1'
 local yellow         = '#e7de79'
-local orange         = '#b4b4b4'
+local orange         = '#e7de79'
 local purple         = '#988bc7'
 local magenta        = '#988bc7'
-local cyan_dark      = '#a1efe4'
 local cyan           = '#a1efe4'
+local cyan_dark      = '#a1efe4'
 local fg             = '#e1e1e6'
 local fg_light       = '#e1e1e6'
 local fg_dark        = '#e1e1e6'
@@ -49,7 +49,7 @@ local editor_syntax = {
   DiffChange   = { fg = yellow },
   DiffDelete   = { fg = red },
   DiffText     = { fg = blue },
-  EndOfBuffer  = { bg = bg_lighter, fg = bg_dark },
+  EndOfBuffer  = { bg = bg, fg = fg },
   ErrorMsg     = { fg = red, gui = 'bold' },
   VertSplit    = { bg = bg_dark, fg = bg },
   Folded       = { fg = fg_dark, gui = 'italic' },
@@ -59,7 +59,7 @@ local editor_syntax = {
   Substitute   = { bg = blue, fg = bg },
   LineNr       = { fg = comment },
   CursorLineNr = { fg = fg },
-  MatchParen   = { fg = cyan, gui = 'bold' },
+  MatchParen   = { fg = fg, gui = 'bold' },
   Normal       = { fg = fg, bg = bg },
   NormalFloat  = { bg = grey_dark, fg = white },
   Pmenu        = { bg = bg_darker, fg = fg_light },
