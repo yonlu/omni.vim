@@ -13,8 +13,8 @@ end
 local bg_darker      = '#15121e'
 local bg_dark        = '#13111b'
 local bg             = '#191622'
-local bg_light       = '#252131'
-local bg_lighter     = '#201b2d'
+local bg_light       = '#201b2d'
+local bg_lighter     = '#252131'
 local grey           = '#8796b0'
 local grey_dark      = '#353b52'
 local red            = '#ff79c6'
@@ -49,7 +49,7 @@ local editor_syntax = {
   DiffChange   = { fg = yellow },
   DiffDelete   = { fg = red },
   DiffText     = { fg = blue },
-  EndOfBuffer  = { bg = bg_lighter, fg = fg_light },
+  EndOfBuffer  = { bg = bg_lighter, fg = bg_dark },
   ErrorMsg     = { fg = red, gui = 'bold' },
   VertSplit    = { bg = bg_dark, fg = bg },
   Folded       = { fg = fg_dark, gui = 'italic' },
