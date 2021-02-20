@@ -29,6 +29,7 @@ local purple         = '#988bc7'
 local magenta        = '#988bc7'
 local cyan           = '#a1efe4'
 local cyan_dark      = '#a1efe4'
+local pink           = '#ff79c6'
 local fg             = '#e1e1e6'
 local fg_light       = '#e1e1e6'
 local fg_dark        = '#e1e1e6'
@@ -186,7 +187,7 @@ local plugin_syntax = {
   TSConstant             = { fg = yellow },
   TSConstBuiltin         = { fg = orange },
   TSConstMacro           = { fg = yellow },
-  TSString               = { fg = green },
+  TSString               = { fg = yellow },
   TSStringRegex          = { fg = cyan_dark },
   TSStringEscape         = { fg = cyan_dark },
   TSNumber               = { fg = orange },
@@ -206,8 +207,8 @@ local plugin_syntax = {
   TSRepeat               = { fg = blue, gui = 'italic' },
   TSException            = { fg = blue, gui = 'italic' },
   TSLabel                = { fg = cyan_dark, gui = 'italic' },
-  TSOperator             = { fg = cyan },
-  TSKeyword              = { fg = blue },
+  TSOperator             = { fg = pink },
+  TSKeyword              = { fg = pink },
   TSType                 = { fg = yellow },
   TSTypeBuiltin          = { fg = orange },
   TSStructure            = { fg = orange },
@@ -215,8 +216,8 @@ local plugin_syntax = {
   TSTag                  = { fg = blue_light },
   TSTagDelimiter         = { fg = cyan },
   -- TSAnnotation = {},
-  TSVariable = { fg = fg_light },
-  TSVariableBuiltin = { fg = orange },
+  TSVariable = { fg = fg },
+  TSVariableBuiltin = { fg = fg },
   -- TSDefinitionUsage = {},
   -- TSDefinition = {},
   -- TSCurrentScope                 = {},
