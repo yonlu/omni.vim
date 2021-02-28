@@ -105,7 +105,6 @@ local editor_syntax = {
   gitcommitHeader        = {},
   gitcommitFile          = {},
 
-  -- User dependent groups, probably useless to change the default:
   Conceal      = {},
   ModeMsg      = {},
   MsgArea      = {},
@@ -215,19 +214,8 @@ local plugin_syntax = {
   TSInclude              = { fg = pink },
   TSTag                  = { fg = pink },
   TSTagDelimiter         = { fg = fg },
-  -- TSAnnotation = {},
   TSVariable = { fg = fg },
   TSVariableBuiltin = { fg = fg },
-  -- TSDefinitionUsage = {},
-  -- TSDefinition = {},
-  -- TSCurrentScope                 = {},
-  -- TSText                 = {},
-  -- TSStrong               = {},
-  -- TSEmphasis             = {},
-  -- TSUnderline            = {},
-  -- TSTitle                = {},
-  -- TSLiteral              = {},
-  -- TSURI                  = {},
 }
 
 -- }}}

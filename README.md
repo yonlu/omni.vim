@@ -18,6 +18,8 @@
   ```viml
   call dein#add('yonlu/omni.vim')
   ```
+  Install with: ``:call dein#install()``
+
   After installed, add this line to your vimrc.
   ```viml
   colorscheme omni
