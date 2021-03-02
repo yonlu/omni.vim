@@ -1,7 +1,6 @@
 local M = {}
 
--- Highlight Function And Color definitons {{{
-
+-- Highlight function and color definitons
 local function highlight(group, styles)
   local gui = styles.gui and 'gui='..styles.gui or 'gui=NONE'
   local sp = styles.sp and 'guisp='..styles.sp or 'guisp=NONE'
@@ -38,10 +37,7 @@ local hollow_lighter = '#30354e'
 local white          = '#e1e1e6'
 local comment        = '#5a4b81'
 
--- }}}
-
--- Editor Highlight Groups {{{
-
+-- Editor highlight groups
 local editor_syntax = {
   CursorLine   = { bg = bg_lighter },
   Cursor       = { fg = fg, bg = bg },
@@ -118,44 +114,41 @@ local editor_syntax = {
   WildMenu     = {}
 }
 
--- }}}
-
--- Vim Default Code Syntax {{{
-
+-- Vim default code syntax
 local code_syntax = {
   Comment        = { fg = comment, gui = 'italic' },
   Constant       = { fg = cyan },
-  String         = { fg = green },
+  String         = { fg = yellow },
   Character      = { fg = green, gui = 'bold' },
-  Number         = { fg = orange },
-  Float          = { fg = orange },
-  Boolean        = { fg = orange },
+  Number         = { fg = cyan },
+  Float          = { fg = cyan },
+  Boolean        = { fg = cyan },
 
-  Identifier     = { fg = heavy_red },
-  Function       = { fg = blue, gui = 'italic' },
+  Identifier     = { fg = fg },
+  Function       = { fg = green, gui = 'italic' },
 
   Statement      = { fg = blue_light, gui = 'italic' },
-  Conditional    = { fg = blue, gui = 'italic' },
-  Repeat         = { fg = blue, gui = 'italic' },
+  Conditional    = { fg = pink, gui = 'italic' },
+  Repeat         = { fg = pink, gui = 'italic' },
   Label          = { fg = blue, gui = 'italic' },
   Exception      = { fg = blue, gui = 'italic' },
-  Operator       = { fg = blue },
-  Keyword        = { fg = heavy_red },
+  Operator       = { fg = pink },
+  Keyword        = { fg = pink },
 
-  Include        = { fg = blue_light },
+  Include        = { fg = pink },
   Define         = { fg = magenta },
   Macro          = { fg = magenta },
   PreProc        = { fg = yellow },
   PreCondit      = { fg = yellow },
 
-  Type           = { fg = yellow },
-  StorageClass   = { fg = yellow },
-  Structure      = { fg = yellow },
-  Typedef        = { fg = yellow },
+  Type           = { fg = pink },
+  StorageClass   = { fg = magenta },
+  Structure      = { fg = magenta },
+  Typedef        = { fg = magenta },
 
   Special        = { fg = blue },
   SpecialChar    = {},
-  Tag            = { fg = orange },
+  Tag            = { fg = pink },
   SpecialComment = { fg = fg_dark, gui = 'bold' },
   Debug          = {},
   Delimiter      = {},
@@ -166,10 +159,7 @@ local code_syntax = {
   Todo           = { fg = magenta, gui = 'bold' },
 }
 
--- }}}
-
--- Plugin Highlight Groups {{{
-
+-- Plugin highlight groups
 local plugin_syntax = {
   GitGutterAdd           = { fg = green },
   GitGutterChange        = { fg = yellow },
@@ -192,7 +182,7 @@ local plugin_syntax = {
   TSNumber               = { fg = cyan },
   TSBoolean              = { fg = cyan },
   TSFloat                = { fg = cyan },
-  TSFunction             = { fg = blue_light },
+  TSFunction             = { fg = pink },
   TSKeywordFunction      = { fg = blue_light },
   TSFuncBuiltin          = { fg = magenta },
   TSFuncMacro            = { fg = orange },
@@ -218,10 +208,7 @@ local plugin_syntax = {
   TSVariableBuiltin = { fg = fg },
 }
 
--- }}}
-
--- Syntax Plugin And Language Highlight Groups {{{
-
+-- Syntax plugin and language highlight groups
 local lang_syntax = {
   -- zsh.vim
   zshTodo            = code_syntax.Todo,
@@ -239,9 +226,8 @@ local lang_syntax = {
   zshSubstDelim      = { fg = cyan },
 }
 
--- }}}
 
--- Setting Neovim Terminal Color {{{
+-- Setting Neovim terminal colors
 
 function M.setup()
   for group, styles in pairs(editor_syntax) do
@@ -272,10 +258,8 @@ function M.setup()
   vim.api.nvim_set_var('terminal_color_13',         magenta)
   vim.api.nvim_set_var('terminal_color_14',         cyan)
   vim.api.nvim_set_var('terminal_color_15',         white)
-  vim.api.nvim_set_var('terminal_color_background', bg_dark)
-  vim.api.nvim_set_var('terminal_color_foreground', fg_light)
+  vim.api.nvim_set_var('terminal_color_background', bg)
+  vim.api.nvim_set_var('terminal_color_foreground', fg)
 end
-
--- }}}
 
 return M
