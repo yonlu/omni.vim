@@ -23,10 +23,20 @@
   colorscheme omni
   ```
   
-## Colors
+## Color Palette
 
-| #201b2d                                                         | #939ede                                                         | #ff79c6                                                         | #ed4556                                                         | #e7de79                                                         | #2c323c                                                         | #67e480                                                         |
-| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| ![#201b2d](https://via.placeholder.com/80/201b2d/000000?text=+) | ![#939ede](https://via.placeholder.com/80/939ede/000000?text=+) | ![#ff79c6](https://via.placeholder.com/80/ff79c6/000000?text=+) | ![#ed4556](https://via.placeholder.com/80/ed4556/000000?text=+) | ![#e7de79](https://via.placeholder.com/80/e7de79/000000?text=+) | ![#2c323c](https://via.placeholder.com/80/2c323c/000000?text=+) | ![#67e480](https://via.placeholder.com/80/67e480/000000?text=+) |
-| #a1efe4                                                         | #78d1e1                                                         | #988bc7                                                         | #67e480                                                         | #626483                                                         | #5a4b81                                                         | #e1e1e6                                                         |
-| ![#a1efe4](https://via.placeholder.com/80/a1efe4/000000?text=+) | ![#78d1e1](https://via.placeholder.com/80/78d1e1/000000?text=+) | ![#988bc7](https://via.placeholder.com/80/988bc7/000000?text=+) | ![#67e480](https://via.placeholder.com/80/67e480/000000?text=+) | ![#626483](https://via.placeholder.com/80/626483/000000?text=+) | ![#5a4b81](https://via.placeholder.com/80/5a4b81/000000?text=+) | ![#e1e1e6](https://via.placeholder.com/80/e1e1e6/000000?text=+) |
+| Palette      | Hex       | Preview                                                  |
+| ------------ | --------- | ---------------------------------------------------------|
+| Background   | `#191622` | ![background](https://place-hold.it/32/191622?text=+) |
+| Foreground   | `#E1E1E6` | ![background](https://place-hold.it/32/E1E1E6?text=+) |
+| Current Line | `#252131` | ![background](https://place-hold.it/32/252131?text=+) |
+| Selection    | `#41414D` | ![background](https://place-hold.it/32/41414D?text=+) |
+| Comment      | `#5A4B81` | ![background](https://place-hold.it/32/5A4B81?text=+) |
+| Red          | `#ED4556` | ![background](https://place-hold.it/32/ED4556?text=+) |
+| Pink         | `#FF79C6` | ![background](https://place-hold.it/32/FF79C6?text=+) |
+| Green        | `#67E480` | ![background](https://place-hold.it/32/67E480?text=+) |
+| Yellow       | `#E7DE79` | ![background](https://place-hold.it/32/E7DE79?text=+) |
+| Blue         | `#78D1E1` | ![background](https://place-hold.it/32/78D1E1?text=+) |
+| Magenta      | `#988BC7` | ![background](https://place-hold.it/32/988BC7?text=+) |
+| Cyan         | `#A1EFE4` | ![background](https://place-hold.it/32/A1EFE4?text=+) |
+| Orange       | `#E89E64` | ![background](https://place-hold.it/32/E89E64?text=+) |
